@@ -11,7 +11,7 @@ const navItems = [
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const menuRef = useRef(null); // Create a ref for the menu container
+  const menuRef = useRef<HTMLDivElement>(null);
 
   // Toggle the menu state
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
