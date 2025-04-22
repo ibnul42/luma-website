@@ -1,78 +1,88 @@
 "use client";
-import { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
-const images = [
-  "/img1.jpg",
-  "/img2.jpg",
-  "/img3.jpg",
-  "/img4.jpg",
-  "/img5.jpg",
-];
+const images = ["/img1.jpg", "/img2.jpg", "/img3.jpg", "/img4.jpg"];
 
 export default function ImageScroller() {
-  const scrollRef = useRef<HTMLDivElement>(null);
-  const contentRef = useRef<HTMLDivElement>(null);
+  const containerRef = useRef<HTMLDivElement | null>(null);
   const [isDragging, setIsDragging] = useState(false);
-  const [startX, setStartX] = useState(0);
-  const [scrollLeft, setScrollLeft] = useState(0);
+  const startXRef = useRef(0);
+  const scrollLeftRef = useRef(0);
+  const animationRef = useRef<number | null>(null);
 
-  const repeatedImages = [...images, ...images, ...images];
+  const duplicatedImages = [...images, ...images]; // double the set
 
-  useEffect(() => {
-    const scrollContainer = scrollRef.current;
-    const content = contentRef.current;
-    if (!scrollContainer || !content) return;
+  const scrollSpeed = 0.4;
+  let scrollAccumulator = 0;
 
-    let animationId: number;
-    const speed = 0.5;
-    const resetThreshold = content.scrollWidth / 3;
+  const step = () => {
+    const container = containerRef.current;
+    if (container && !isDragging) {
+      scrollAccumulator += scrollSpeed;
+      const move = Math.floor(scrollAccumulator);
 
-    const animateScroll = () => {
-      if (!isDragging) {
-        scrollContainer.scrollLeft += speed;
+      if (move >= 1) {
+        container.scrollLeft += move;
+        scrollAccumulator -= move;
 
-        if (scrollContainer.scrollLeft >= resetThreshold * 2) {
-          scrollContainer.scrollLeft -= resetThreshold;
+        const scrollWidth = container.scrollWidth / 2;
+        if (container.scrollLeft >= scrollWidth) {
+          container.scrollLeft = 0;
         }
       }
-      animationId = requestAnimationFrame(animateScroll);
-    };
+    }
 
-    animateScroll();
-    return () => cancelAnimationFrame(animationId);
-  }, [isDragging]);
-
-  const handleMouseDown = (e: React.MouseEvent) => {
-    setIsDragging(true);
-    setStartX(e.pageX - (scrollRef.current?.offsetLeft ?? 0));
-    setScrollLeft(scrollRef.current?.scrollLeft ?? 0);
+    animationRef.current = requestAnimationFrame(step);
   };
 
-  const handleMouseLeave = () => setIsDragging(false);
-  const handleMouseUp = () => setIsDragging(false);
+  useEffect(() => {
+    if (animationRef.current) {
+      cancelAnimationFrame(animationRef.current);
+    }
+    animationRef.current = requestAnimationFrame(step);
+    return () => {
+      if (animationRef.current) cancelAnimationFrame(animationRef.current);
+    };
+  }, []);
 
-  const handleMouseMove = (e: React.MouseEvent) => {
-    if (!isDragging || !scrollRef.current) return;
+  const handleMouseDown = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!containerRef.current) return;
+    setIsDragging(true);
+    if (animationRef.current) cancelAnimationFrame(animationRef.current);
+    startXRef.current = e.pageX - containerRef.current.offsetLeft;
+    scrollLeftRef.current = containerRef.current.scrollLeft;
+  };
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!isDragging || !containerRef.current) return;
     e.preventDefault();
-    const x = e.pageX - scrollRef.current.offsetLeft;
-    const walk = x - startX;
-    scrollRef.current.scrollLeft = scrollLeft - walk;
+    const x = e.pageX - containerRef.current.offsetLeft;
+    const walk = x - startXRef.current;
+    containerRef.current.scrollLeft = scrollLeftRef.current - walk;
+  };
+
+  const handleMouseUp = () => {
+    setIsDragging(false);
+    if (animationRef.current) {
+      cancelAnimationFrame(animationRef.current);
+    }
+    animationRef.current = requestAnimationFrame(step);
   };
 
   return (
     <div
-      ref={scrollRef}
+      ref={containerRef}
+      className="image-slider-container scrollable"
       onMouseDown={handleMouseDown}
-      onMouseLeave={handleMouseLeave}
-      onMouseUp={handleMouseUp}
       onMouseMove={handleMouseMove}
-      className="w-full overflow-hidden cursor-grab active:cursor-grabbing"
+      onMouseLeave={handleMouseUp}
+      onMouseUp={handleMouseUp}
     >
-      <div ref={contentRef} className="flex w-max">
-        {repeatedImages.map((src, index) => (
+      <div className="image-track flex gap-5">
+        {duplicatedImages.map((src, index) => (
           <div
             key={index}
-            className="relative w-64 h-40 mx-2 flex items-center justify-center select-none"
+            className="image-card shrink-0 relative w-60 h-20 mx-2 flex items-center justify-center select-none"
           >
             <p className="text-3xl">Image-{index % images.length}</p>
           </div>

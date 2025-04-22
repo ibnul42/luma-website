@@ -28,3 +28,33 @@
     transform: rotate(1turn);
   }
 }
+
+.image-slider-container {
+  overflow-x: scroll;
+  white-space: nowrap;
+  cursor: grab;
+  width: 100%;
+  scrollbar-width: none;
+}
+
+.image-slider-container::-webkit-scrollbar {
+  display: none;
+}
+
+.image-slider-container:active {
+  cursor: grabbing;
+}
+
+.image-track {
+  display: flex;
+  width: max-content;
+}
+
+.image-card {
+  flex-shrink: 0;
+  margin: 0 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+}

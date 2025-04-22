@@ -8,8 +8,8 @@ export default function Home() {
         <BackgroundVideo />
         <div className="relative">
           <div className="absolute left-0 top-0 w-full h-40 z-20 flex pointer-events-none">
-            <div className="w-1/2 h-full bg-gradient-to-l from-transparent to-black/90"></div>
-            <div className="w-1/2 h-full bg-gradient-to-r from-transparent to-black/90"></div>
+            <div className="w-1/2 h-full bg-gradient-to-l from-transparent to-black"></div>
+            <div className="w-1/2 h-full bg-gradient-to-r from-transparent to-black"></div>
           </div>
           <ImageScroller />
         </div>

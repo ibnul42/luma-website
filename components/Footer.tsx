@@ -7,7 +7,7 @@ export default function Footer() {
     <div className="">
       <div className="container mx-auto px-3 py-3 flex flex-col md:flex-row gap-3">
         <div className="space-y-2">
-            <p className="capitalize italic text-2xl">tim wehrle</p>
+            <p className="capitalize italic text-2xl">Luma</p>
           <LocalTimeAndPlace />
         </div>
         <div className="flex-1 py-2 flex md:items-center md:justify-center">

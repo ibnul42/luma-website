@@ -43,19 +43,19 @@ export default function Header() {
         {/* Menu Button + Dropdown Wrapper */}
         <div className="relative" ref={menuRef}> {/* Attach the ref here */}
           {/* Menu Button */}
-          <div className="space-y-1 cursor-pointer" onClick={toggleMenu}>
+          <div className="space-y-1.5 cursor-pointer" onClick={toggleMenu}>
             <div
               className={`flex gap-1.5 transition-transform duration-300 ${
-                isMenuOpen ? "rotate-45 translate-y-1.5" : ""
+                isMenuOpen ? "rotate-45 translate-y-1" : ""
               }`}
             >
               <div
-                className={`w-1.5 rounded-full bg-white transition-all duration-150 ${
-                  isMenuOpen ? "translate-x-[9px] h-1" : "h-1.5"
+                className={`w-[3px] rounded-full bg-white transition-all duration-150 ${
+                  isMenuOpen ? "translate-x-[9px] h-0.5" : "h-[3px]"
                 }`}
               ></div>
               <div
-                className={`w-8 ${isMenuOpen ? "h-1" : "h-1.5"} rounded-full bg-white`}
+                className={`w-8 ${isMenuOpen ? "h-0.5" : "h-[3px]"} rounded-full bg-white`}
               ></div>
             </div>
             <div
@@ -63,8 +63,8 @@ export default function Header() {
                 isMenuOpen ? "opacity-0" : "opacity-100"
               }`}
             >
-              <div className="w-1.5 h-1.5 rounded-full bg-white"></div>
-              <div className="w-7 h-1.5 rounded-full bg-white"></div>
+              <div className="w-[3px] h-[3px] rounded-full bg-white"></div>
+              <div className="w-7 h-[3px] rounded-full bg-white"></div>
             </div>
             <div
               className={`flex gap-1.5 transition-transform duration-300 ${
@@ -72,12 +72,12 @@ export default function Header() {
               }`}
             >
               <div
-                className={`w-1.5 rounded-full bg-white transition-all duration-150 ${
-                  isMenuOpen ? "translate-x-[9px] h-1" : "h-1.5"
+                className={`w-[3px] rounded-full bg-white transition-all duration-150 ${
+                  isMenuOpen ? "translate-x-[9px] h-0.5" : "h-[3px]"
                 }`}
               ></div>
               <div
-                className={`w-8 ${isMenuOpen ? "h-1" : "h-1.5"} rounded-full bg-white`}
+                className={`w-8 ${isMenuOpen ? "h-0.5" : "h-[3px]"} rounded-full bg-white`}
               ></div>
             </div>
           </div>
@@ -88,17 +88,17 @@ export default function Header() {
               isMenuOpen ? "translate-y-0" : "-translate-y-[100vh]"
             }`}
           >
-            <nav className="flex flex-col space-y-3 p-4 text-2xl font-bold">
+            <nav className="flex flex-col space-y-5 p-4 text-2xl font-normal">
               {navItems.map(({ label, href }) => (
                 <Link
                   key={label}
                   href={href}
-                  className="group relative inline-block text-gray-600 hover:text-black overflow-hidden"
+                  className="group relative inline-block text-gray-600 hover:text-black overflow-hidden py-1"
                 >
                   <span className="block transition-all duration-500 group-hover:translate-y-full group-hover:opacity-0">
                     {label}
                   </span>
-                  <span className="absolute left-0 top-[-100%] block transition-all duration-500 group-hover:translate-y-full group-hover:opacity-100">
+                  <span className="absolute left-0 top-[-70%] block transition-all duration-500 group-hover:translate-y-full group-hover:opacity-100">
                     {label}
                   </span>
                 </Link>
