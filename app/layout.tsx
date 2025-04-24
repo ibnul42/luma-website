@@ -4,6 +4,7 @@ import "./globals.css";
 import ClientLayout from "@/components/ClientLayout";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import ParticlesBackground from "@/components/ParticlesBackground";
 // import Header from "@/components/Header";
 // import Footer from "@/components/Footer";
 
@@ -28,6 +29,7 @@ export default function RootLayout({
         className={`${poppins.className} antialiased h-screen overflow-y-auto bg-black flex flex-col text-white`}
       >
         <ClientLayout>
+          <ParticlesBackground />
           <Header />
           <div className="flex-1">{children}</div>
           <Footer />
