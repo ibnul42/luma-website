@@ -5,7 +5,7 @@ export default function BackgroundVideo() {
   return (
     <div className="relative w-full h-[500px] overflow-hidden">
         <div className="absolute left-0 top-0 w-full h-full flex justify-end items-end md:items-center z-20">
-            <div className="w-40 h-60 bg-transparent border border-white/20 shadow-2xl rounded-2xl overflow-hidden flex items-center justify-center">
+            <div className="w-40 h-60 border border-white/20 shadow-2xl rounded-2xl overflow-hidden flex items-center justify-center bg-white/5 backdrop-blur-sm">
                 <p className="text-white">About agency</p>
             </div>
         </div>

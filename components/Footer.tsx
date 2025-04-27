@@ -11,7 +11,7 @@ export default function Footer() {
           <LocalTimeAndPlace />
         </div>
         <div className="flex-1 py-2 flex md:items-center md:justify-center">
-            <p className="text-center uppercase md:text-xl">all right reserved &copy; 2025, w1 llc</p>
+            <p className="text-center uppercase">all right reserved &copy; 2025, w1 llc</p>
         </div>
       </div>
       <div className="bg-black">

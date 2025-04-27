@@ -84,7 +84,7 @@ export default function Header() {
 
           {/* Dropdown Menu */}
           <div
-            className={`absolute right-0 mt-2 w-72 rounded-md shadow-lg bg-white border z-50 transition-transform duration-500 ${
+            className={`absolute right-0 mt-2 w-72 rounded-xl shadow-lg bg-white/10 backdrop-blur-md z-50 transition-transform duration-500 ${
               isMenuOpen ? "translate-y-0" : "-translate-y-[100vh]"
             }`}
           >
@@ -93,7 +93,7 @@ export default function Header() {
                 <Link
                   key={label}
                   href={href}
-                  className="group relative inline-block text-gray-600 hover:text-black overflow-hidden py-1"
+                  className="group relative inline-block text-white/90 hover:text-white overflow-hidden py-1"
                 >
                   <span className="block transition-all duration-500 group-hover:translate-y-full group-hover:opacity-0">
                     {label}
