@@ -66,14 +66,25 @@ const ParticlesComponent = () => {
               speed: { min: 12, max: 15 },
               outModes: "destroy",
             },
-            size: { value: { min: 2, max: 2.5 } },
+            size: { value: { min: 20, max: 30 } }, // Image needs a bigger size usually
             life: {
               duration: { min: 1, max: 1.5 },
               count: 1,
             },
-            color: { value: "#fff" },
-            shape: { type: "triangle" },
-            opacity: { value: 0.8 },
+            opacity: { value: 1 },
+            shape: {
+              type: "image", // <--- important change here
+              image: [
+                {
+                  src: "/assets/test.png", // <- your image path
+                  width: 32, // image width
+                  height: 32, // image height
+                },
+              ],
+            },
+            color: {
+              value: "#ffffff", // optional, if your image has transparency
+            },
             trail: {
               enable: true,
               length: 80,

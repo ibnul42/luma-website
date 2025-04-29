@@ -23,13 +23,20 @@ export default function Service({ person }: ServiceProps) {
 
   React.useEffect(() => {
     if (isInView) {
-      setPlayed(true);
+      // setPlayed(true);
     }
   }, [isInView]);
 
   return (
-    <Tilt className="w-full h-auto border rounded-xl overflow-hidden px-5 py-6 hover:shadow-lg transition-all text-center">
-      <div ref={ref} className="flex flex-col justify-between h-full">
+    <Tilt className="w-full h-auto bg-white/5 backdrop-blur-sm border border-white/20 shadow-2xl rounded-2xl overflow-hidden px-5 py-6 hover:shadow-lg transition-all text-center">
+      <div
+        onMouseEnter={() => {
+          setPlayed(false);
+          setTimeout(() => setPlayed(true), 10);
+        }}
+        ref={ref}
+        className="flex flex-col justify-between h-full"
+      >
         <div>
           <h3 className="text-xl font-bold">{person.title}</h3>
           {person.position && (
@@ -42,7 +49,7 @@ export default function Service({ person }: ServiceProps) {
           </ul>
         </div>
 
-        <div className="mt-5 flex justify-center">
+        <div className="mt-5 flex justify-center h-24">
           {played && (
             <Lottie
               animationData={signatureAnimation}

@@ -5,12 +5,12 @@ export default function BackgroundVideo() {
   return (
     <div className="relative w-full h-[500px] overflow-hidden">
         <div className="absolute left-0 top-0 w-full h-full flex justify-end items-end md:items-center z-20">
-            <div className="w-40 h-60 border border-white/20 shadow-2xl rounded-2xl overflow-hidden flex items-center justify-center bg-white/5 backdrop-blur-sm">
+            <div className="w-40 h-60 bg-white/5 backdrop-blur-sm border border-white/20 shadow-2xl rounded-2xl overflow-hidden flex items-center justify-center">
                 <p className="text-white">About agency</p>
             </div>
         </div>
       {/* Background video */}
-      <video
+      {/* <video
         autoPlay
         loop
         muted
@@ -19,7 +19,7 @@ export default function BackgroundVideo() {
       >
         <source src="assets/demo.mp4" type="video/mp4" />
         Your browser does not support the video tag.
-      </video>
+      </video> */}
 
       {/* Overlay content */}
       <div className="relative z-10 flex items-center justify-center h-full bg-black/30">
