@@ -10,7 +10,7 @@ export default function BackgroundVideo() {
             </div>
         </div>
       {/* Background video */}
-      {/* <video
+      <video
         autoPlay
         loop
         muted
@@ -19,7 +19,7 @@ export default function BackgroundVideo() {
       >
         <source src="assets/demo.mp4" type="video/mp4" />
         Your browser does not support the video tag.
-      </video> */}
+      </video>
 
       {/* Overlay content */}
       <div className="relative z-10 flex items-center justify-center h-full bg-black/30">
