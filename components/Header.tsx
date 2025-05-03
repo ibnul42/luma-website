@@ -4,9 +4,9 @@ import Link from "next/link";
 
 const navItems = [
   { label: "Home", href: "/" },
-  { label: "About", href: "/about" },
-  { label: "Services", href: "/services" },
-  { label: "Contact", href: "/contact" },
+  { label: "Services", href: "#service" },
+  { label: "Faq", href: "#faq" },
+  { label: "Contact", href: "#contact" },
 ];
 
 export default function Header() {
@@ -41,7 +41,9 @@ export default function Header() {
         </div>
 
         {/* Menu Button + Dropdown Wrapper */}
-        <div className="relative" ref={menuRef}> {/* Attach the ref here */}
+        <div className="relative" ref={menuRef}>
+          {" "}
+          {/* Attach the ref here */}
           {/* Menu Button */}
           <div className="space-y-1.5 cursor-pointer" onClick={toggleMenu}>
             <div
@@ -55,7 +57,9 @@ export default function Header() {
                 }`}
               ></div>
               <div
-                className={`w-8 ${isMenuOpen ? "h-0.5" : "h-[3px]"} rounded-full bg-white`}
+                className={`w-8 ${
+                  isMenuOpen ? "h-0.5" : "h-[3px]"
+                } rounded-full bg-white`}
               ></div>
             </div>
             <div
@@ -77,11 +81,12 @@ export default function Header() {
                 }`}
               ></div>
               <div
-                className={`w-8 ${isMenuOpen ? "h-0.5" : "h-[3px]"} rounded-full bg-white`}
+                className={`w-8 ${
+                  isMenuOpen ? "h-0.5" : "h-[3px]"
+                } rounded-full bg-white`}
               ></div>
             </div>
           </div>
-
           {/* Dropdown Menu */}
           <div
             className={`absolute right-0 mt-2 w-72 rounded-xl shadow-lg bg-white/10 backdrop-blur-md z-50 transition-transform duration-500 ${
@@ -93,12 +98,15 @@ export default function Header() {
                 <Link
                   key={label}
                   href={href}
+                  onClick={() => {
+                    setIsMenuOpen(false);
+                  }}
                   className="group relative inline-block text-white/90 hover:text-white overflow-hidden py-1"
                 >
                   <span className="block transition-all duration-500 group-hover:translate-y-full group-hover:opacity-0">
                     {label}
                   </span>
-                  <span className="absolute left-0 top-[-70%] block transition-all duration-500 group-hover:translate-y-full group-hover:opacity-100">
+                  <span className="absolute left-0 top-[-80%] block transition-all duration-500 group-hover:translate-y-full group-hover:opacity-100">
                     {label}
                   </span>
                 </Link>

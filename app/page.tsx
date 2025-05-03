@@ -11,13 +11,13 @@ export default function Home() {
         <BackgroundVideo />
         <InfiniteMarquee />
       </div>
-      <div className="">
+      <div id="service" className="">
         <Services />
       </div>
-      <div className="">
+      <div id="faq" className="">
         <FAQ />
       </div>
-      <div className="bg-white">
+      <div id="contact" className="bg-white">
         <ContactForm />
       </div>
     </div>

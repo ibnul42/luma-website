@@ -2,6 +2,10 @@
 @tailwind utilities;
 
 /* HTML: <div class="loader"></div> */
+html{
+scroll-behavior: smooth;
+}
+
 .loader {
   width: 50px;
   --b: 8px;
